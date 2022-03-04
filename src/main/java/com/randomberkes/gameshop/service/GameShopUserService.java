@@ -4,10 +4,12 @@ import com.randomberkes.gameshop.exception.GameShopUserNotFounrException;
 import com.randomberkes.gameshop.model.GameShopUser;
 import com.randomberkes.gameshop.repo.GameShopUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class GameShopUserService {
     private final GameShopUserRepo gameShopUserRepo;
 

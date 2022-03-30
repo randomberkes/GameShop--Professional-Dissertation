@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class GameShopUserService{
+    
     private apiServerUrl = environment.apiBaseUrl;
 
     constructor(private http: HttpClient){}

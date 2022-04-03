@@ -32,4 +32,25 @@ export class AppComponent implements OnInit {
       }
     );
   }
+
+  public openModal( gameShopUser: GameShopUser, mode: string): void {
+    if (gameShopUser !== null) {
+      const container = document.getElementById('main-container');
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.style.display = 'none';
+      button.setAttribute('data-toggle', 'modal');
+      if (mode === 'add'){
+        button.setAttribute('data-target', '#addGameShopUser');
+      }
+      if (mode === 'edit'){
+        button.setAttribute('data-target', '#addGameShopUser');
+      }
+      if (mode === 'delete'){
+        button.setAttribute('data-target', '#addGameShopUser');
+      }
+      container!.appendChild(button);
+      button.click();
+    }
+  }
 }  

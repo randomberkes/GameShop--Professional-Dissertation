@@ -1,31 +1,59 @@
-<mat-toolbar color = warn>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>My App</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-    <mat-icon>favorite</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
-</mat-toolbar>
+<div id="main-container">
+  <mat-toolbar  color = warn>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon favorite-icon"  aria-label="Example icon-button with heart icon" (click)="openModal(null, 'add')">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
 
-<div *ngFor="let gameShopUser of gameShopUsers">
-  <mat-card class="example-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>{{gameShopUser.name}}</mat-card-title>
-      <mat-card-subtitle>{{gameShopUser.userTitle}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>email:  {{gameShopUser.email}}</p>
-      <p>phone:  {{gameShopUser.phone}}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>LIKE</button>
-      <button mat-button>SHARE</button>
-    </mat-card-actions>
-  </mat-card>
+  <div  *ngFor="let gameShopUser of gameShopUsers">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{gameShopUser.name}}</mat-card-title>
+        <mat-card-subtitle>{{gameShopUser.userTitle}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p>email:  {{gameShopUser.email}}</p>
+        <p>phone:  {{gameShopUser.phone}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="openModal(gameShopUser, 'edit')">Edit</button>
+        <button mat-button (click)="openModal(gameShopUser, 'delete')">Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>  
 </div>  
+
+
+<!-- Add GameShopUser Formfield -->
+<div class="modal fade" id="addGameShopUser" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+  <ng-template #content let-modal >
+    <div class="modal-header">
+      <h4 class="modal-title" id="addGameShopUser">Profile update</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+          <label for="dateOfBirth">Date of birth</label>
+          <div class="input-group">
+            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker >
+            <button class="btn btn-outline-secondary calendar"  type="button"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+    </div>
+  </ng-template>
+</div>
+
